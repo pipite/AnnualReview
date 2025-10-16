@@ -300,7 +300,6 @@ function Compute_ListeBM {
 
 		$OKparty     = $false
 		$OKprofil    = $false
-		#$OKactif     = $false
 		$OKhoraire   = $false
 		$OK          = $false
 
@@ -323,12 +322,6 @@ function Compute_ListeBM {
 
 			# Exclusion si Date d'entrée > Today
 			$dateentree = ConvertTo-SafeDate -dateString $script:USER[$zeromatricule]["Date d'entrée"] -format $script:cfg["SQL_Postgre_Review"]["frmtdateOUT"] -matricule $zeromatricule -fieldName "Date d'entrée" -functionName "Query_XLS_Salaries-complement"
-			#if ( $dateentree.Date -gt (Get-Date) ) { 
-			#	$OK = $false; 
-			#	Add-Exclusion $matricule "XLS_Salaries-complement" "Exclu pour Date d'entrée = $($dateentree.Date)   $nom $prenom" -USER
-			#} else {
-				#$OKactif  = $true
-			#}
 
 			# Exclusion des contrats invalides
 			foreach ( $exclude in $ExcludeContrat ) {
@@ -422,7 +415,6 @@ function Compute_ListeBM {
         }
 
 		# Crée la clé ListeBMo365[$o365] si o365 valid
-		#if ( $o365 -ne "-" ) {
 		if ( (IsEmail $o365 $zeromatricule)  ) {
 			if (-not $script:ListeBMo365.ContainsKey($o365)) {
 				$script:ListeBMo365[$o365] = @{}
@@ -506,7 +498,7 @@ function Query_CSV_Salaires-primes_by_file {
 		}
 		# Stocke la valeur du champ (Somme pour les champs identiques)
 		if ( [string]::IsNullOrWhiteSpace($CatRub) ) {
-			#WRN "Query_CSV_Salaires-primes" "Matricule [$zeromatricule] [$annee] : Colonne [Cat RUB] vide pour un montant de $montant"
+			DBG "Query_CSV_Salaires-primes" "Matricule [$zeromatricule] [$annee] : Colonne [Cat RUB] vide pour un montant de $montant"
 		} else {
 			if ( $script:ReviewAll[$zeromatricule][$annee].ContainsKey($CatRub) ) {
 				$script:ReviewAll[$zeromatricule][$annee][$CatRub] += $montant

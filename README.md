@@ -7,6 +7,34 @@ Le script lit les données de diverses sources, y applique un traitement, puis m
 * Source de données provenant de plusieurs sources au format **CSV, XLS et XLSX.**
 * Synchronise des tables d'une base de donnée **PostgreSQL**
 
+## Comment installer ce script
+
+Recuperer le script sur GitLAB, et déposer les fichiers dans un répertoire du serveur de Script.
+
+### Modules externes
+
+Recuperer les modules nécessaire sur GitLAB, et les déposer dans le répertoire Modules du script.
+
+1. **`Ini.ps1`** - Gestion des fichiers de configuration INI
+2. **`Log.ps1`** - Système de logging (LOG, ERR, WRN, MOD, DLT, INA, DBG, QUIT)
+3. **`Encode.ps1`** - Encodage des données et gestion UTF-8
+4. **`Csv.ps1`** - Traitement des fichiers CSV
+5. **`XLSX.ps1`** - Traitement des fichiers Excel (XLS/XLSX)
+6. **`StrConvert.ps1`** - Conversion et manipulation de chaînes
+7. **`SendEmail.ps1`** - Envoi d'emails (SMTP ou Microsoft Graph)
+8. **`PostgreSQL - TransactionAllInOne.ps1`** - Pour `TransacSQL = AllInOne` (toutes les transactions en une seule)
+9. **`PostgreSQL - TransactionOneByOne.ps1`** - Pour `TransacSQL = OneByOne` (transactions individuelles)
+10. **`SQL - Transaction.ps1`**
+
+### Assemblys .NET
+
+- **`System.Web`** - Fonctionnalités web .NET
+- **Drivers PostgreSQL** :
+  - `Npgsql.dll` - Driver PostgreSQL pour .NET
+  - `Microsoft.Extensions.Logging.Abstractions.dll` - Abstractions de logging Microsoft
+
+Paramétrer le fichier AnnualReview.ini
+
 ## Source des données  
 
 |                   Paramètres .ini                   |                    Fichiers                     |
@@ -1047,36 +1075,6 @@ AnnualReview.ps1
 ├── Mise à jour base de données
 └── Génération des rapports
 ```
-
-## Dépendances
-
-### Modules externes
-
-Les modules sont chargés au démarrage du script dans l'ordre suivant :
-
-1. **`Ini.ps1`** - Gestion des fichiers de configuration INI
-2. **`Log.ps1`** - Système de logging (LOG, ERR, WRN, MOD, DLT, INA, DBG, QUIT)
-3. **`Encode.ps1`** - Encodage des données et gestion UTF-8
-4. **`Csv.ps1`** - Traitement des fichiers CSV
-5. **`XLSX.ps1`** - Traitement des fichiers Excel (XLS/XLSX)
-6. **`StrConvert.ps1`** - Conversion et manipulation de chaînes
-7. **`SendEmail.ps1`** - Envoi d'emails (SMTP ou Microsoft Graph)
-
-> **Note :** La documentation détaillée de chaque module sera fournie séparément.
-
-### Module de base de données (chargement conditionnel)
-
-Le module de gestion PostgreSQL est chargé selon le paramètre `[start][TransacSQL]` du fichier .ini :
-
-- **`PostgreSQL - TransactionAllInOne.ps1`** - Si `TransacSQL = AllInOne` (toutes les transactions en une seule)
-- **`PostgreSQL - TransactionOneByOne.ps1`** - Si `TransacSQL = OneByOne` (transactions individuelles)
-
-### Assemblys .NET
-
-- **`System.Web`** - Fonctionnalités web .NET
-- **Drivers PostgreSQL** :
-  - `Npgsql.dll` - Driver PostgreSQL pour .NET
-  - `Microsoft.Extensions.Logging.Abstractions.dll` - Abstractions de logging Microsoft
 
 ## Flux d'exécution principal
 

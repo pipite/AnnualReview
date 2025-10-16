@@ -1,8 +1,0 @@
-Modules nécessaires
-Ini.ps1 - Gestion des fichiers de configuration INI
-Log.ps1 - Système de logging (LOG, ERR, WRN, MOD, DLT, INA, DBG, QUIT)
-Encode.ps1 - Encodage des données et gestion UTF-8
-Csv.ps1 - Traitement des fichiers CSV
-XLSX.ps1 - Traitement des fichiers Excel (XLS/XLSX)
-StrConvert.ps1 - Conversion et manipulation de chaînes
-SendEmail.ps1 - Envoi d'emails (SMTP ou Microsoft Graph)
